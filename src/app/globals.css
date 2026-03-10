@@ -109,8 +109,8 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: -1;
   mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
@@ -120,38 +120,47 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
 .glow-bubble {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   z-index: -2;
-  opacity: 0.5;
+  opacity: 0.3;
+  animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
 }
 
 .glow-bubble-1 {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background: var(--primary);
   top: -100px;
-  left: -100px;
+  left: -150px;
 }
 
 .glow-bubble-2 {
-  width: 500px;
-  height: 500px;
-  background: var(--accent);
+  width: 600px;
+  height: 600px;
+  background: #0ea5e9;
   bottom: -200px;
   right: -200px;
+  animation-delay: -5s;
 }
 
 /* Glass Card */
 .glass-card {
   background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
   padding: 2.5rem;
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transform-style: preserve-3d;
 }
 
 .glass-card::before {
@@ -160,20 +169,18 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,1), transparent);
+  transition: opacity 0.5s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-.glass-card:hover::before {
-  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Features Grid */
@@ -265,18 +272,21 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
 .ai-manager-container {
   display: flex;
   background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
   overflow: hidden;
   height: 600px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
 }
 
 .chat-sidebar {
   width: 300px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(248, 250, 252, 0.6);
   border-right: 1px solid var(--border-color);
-  padding: 1.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -285,7 +295,7 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .chat-header {
@@ -417,19 +427,27 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
 }
 
 .pricing-card {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
   padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(16px);
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
 .pricing-card.popular {
-  border-color: var(--primary);
-  box-shadow: 0 0 30px rgba(79, 70, 229, 0.1);
+  border-color: rgba(79, 70, 229, 0.3);
+  box-shadow: 0 0 40px rgba(79, 70, 229, 0.1);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .pricing-badge {
